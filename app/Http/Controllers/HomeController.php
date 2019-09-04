@@ -24,11 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $user = auth()->user();
-        $roles = $user->getRoleNames();
-        var_dump($roles);
-        die();
         return view('home');
     }
 }
