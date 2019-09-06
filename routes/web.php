@@ -18,8 +18,25 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('admin/acl'
-, [
-    'uses' => 'AclController@index',
-    'middleware' => ['role:admin'],
-])->name('admin.acl');
+
+/*
+|--------------------------------------------------------------------------
+| Access Control
+|--------------------------------------------------------------------------
+| Manager roles & permissions.
+|
+*/
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/acl','AclController@index')->name('admin.acl');
+    Route::get('admin/manage-roles','AclController@manageRoles')->name('manageRoles');
+    Route::get('admin/create-role'
+                , [
+                    'uses' => 'AclController@createRole',
+                    'middleware' => 'permission:create-role',
+                ])->name('newRole');
+    Route::post('admin/store-role','AclController@storeRole')->name('createRole');
+    Route::get('admin/manage-Permissions','AclController@managePermissions')->name('managePermissions');
+    Route::get('admin/create-Permission','AclController@createPermission')->name('newPermission');
+    Route::post('admin/store-Permission','AclController@storePermission')->name('createPermission');
+    Route::get('admin/access-control/{id}','AclController@edit')->name('edit.permissions');
+});
