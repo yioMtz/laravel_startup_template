@@ -74,8 +74,6 @@ class AclController extends Controller
      */
     public function update(Request $request)
     {
-
-    
         $validatedData = Validator::make($request->all(), [
             'user_id' => 'required|integer|exists:users,id',
             'roles.*' => 'exists:roles,name',
@@ -198,5 +196,48 @@ class AclController extends Controller
             'description' => filter_var($request->description,FILTER_SANITIZE_STRING)
             ]);
         return redirect()->route('managePermissions');
+    }
+
+    /**
+     * Show the form for adding permissions to role.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editRolePermissions($id)
+    {
+        $permissions = \Spatie\Permission\Models\Permission::all();
+        $pageVars = [
+            //This is the title of my custom view.
+                'pageTitle'=> __('acl.editRoles'),
+                'role' => $id,
+                'permissions' => $permissions
+            ];
+        return view('acl/editRolePermissions')->with($pageVars);
+    }
+
+
+     /**
+     * Assign permissions to a specific role.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setPermissionsToRole(Request $request)
+    {
+        $validatedData = Validator::make($request->all(), [
+            'role_id' => 'required|integer|exists:roles,id',
+            'permissions.*' => 'exists:permissions,name',
+        ])->validate();
+
+         if(empty($validatedData['permissions'])){
+            $user->syncPermissions();
+         }else{
+            $user->syncPermissions([$validatedData['permissions']]);
+         }
+         
+
+         return redirect()->route('manageRoles')->with('status', __('acl.permissions_updated'));
     }
 }
