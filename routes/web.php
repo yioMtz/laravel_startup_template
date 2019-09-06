@@ -34,10 +34,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
                     'uses' => 'AclController@createRole',
                     'middleware' => 'permission:create-role',
                 ])->name('newRole');
-    Route::get('admin/role-permissions'
+    Route::get('admin/role-permissions/{id}'
                 , [
                     'uses' => 'AclController@editRolePermissions',
-                    'middleware' => 'permission:assign-permission',
+                    'middleware' => 'permission:assign-permissions',
                 ])->name('editRolePermissions');
     Route::post('admin/store-role','AclController@storeRole')->name('createRole');
     Route::get('admin/manage-Permissions','AclController@managePermissions')->name('managePermissions');

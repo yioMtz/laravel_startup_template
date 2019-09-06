@@ -34,7 +34,7 @@
                     <th scope="row" class="text-center">{{ $role->id }}</th>
                     <td class="text-center">{{ $role->name }}</td>
                     <td class="text-center">
-                      <a type="button" class="btn btn-info text-white">{{__('acl.manageAssignPermissions')}}</a>
+                      <a href="{{ route('editRolePermissions', $role->id) }}" type="button" class="btn btn-info text-white">{{__('acl.manageAssignPermissions')}}</a>
                     </td>
                   </tr>
                 @endforeach
