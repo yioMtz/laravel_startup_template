@@ -12,7 +12,4 @@ $fa-font-path: "../webfonts";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-.primary-color {
-    background-color: $indigo !important;
-}
+@import './_custom.scss';

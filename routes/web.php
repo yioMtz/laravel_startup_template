@@ -39,4 +39,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/create-Permission','AclController@createPermission')->name('newPermission');
     Route::post('admin/store-Permission','AclController@storePermission')->name('createPermission');
     Route::get('admin/access-control/{id}','AclController@edit')->name('edit.permissions');
+    Route::post('admin/access-control','AclController@update')->name('update.permissions');
 });

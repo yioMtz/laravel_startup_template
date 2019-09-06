@@ -27,5 +27,9 @@ return [
     'createPermission' => 'Create new permission',
     'newPermission' => 'Create new permission',
     'permissionName' => 'Permission name',
+    'assign_user_roles_text' => 'Check the Roles for the user and any additional individual permissions not coverd by the assign roles.',
+    'roles' => 'Roles',
+    'invalidRole' => 'Role is undefined.',
+    'permissions_updated' => 'Roles & Permissions updated!',
 
 ];

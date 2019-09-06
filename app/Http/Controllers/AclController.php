@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class AclController extends Controller
@@ -40,27 +42,6 @@ class AclController extends Controller
         return view('acl/index')->with($pageVars);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing user roles & permissions.
@@ -71,14 +52,19 @@ class AclController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $roles = \Spatie\Permission\Models\Role::all();
+        $permissions = \Spatie\Permission\Models\Permission::all();
         $pageVars = [
             //This is the title of my custom view.
                 'pageTitle'=> __('acl.editRoles'),
-                'user' => $user
+                'user' => $user,
+                'roles' => $roles,
+                'permissions' => $permissions
             ];
         return view('acl/edit')->with($pageVars);
     }
 
+    
     /**
      * Update the specified resource in storage.
      *
@@ -86,9 +72,30 @@ class AclController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+    
+        $validatedData = Validator::make($request->all(), [
+            'user_id' => 'required|integer|exists:users,id',
+            'roles.*' => 'exists:roles,name',
+            'permissions.*' => 'exists:permissions,name',
+        ])->validate();
+
+         $user = User::find($request->user_id);
+         if(empty($validatedData['roles'])){
+            $user->syncRoles();
+         }else{
+             $user->syncRoles([$validatedData['roles']]);
+         }
+         if(empty($validatedData['permissions'])){
+            $user->syncPermissions();
+         }else{
+            $user->syncPermissions([$validatedData['permissions']]);
+         }
+         
+
+         return redirect()->route('edit.permissions', [$user->id])->with('status', __('acl.permissions_updated'));
     }
 
 
@@ -137,7 +144,7 @@ class AclController extends Controller
             'name' => 'required|unique:roles|max:200',
         ]);
 
-        Role::create(['name' => filter_var($request->name,FILTER_SANITIZE_STRING)]);
+        Role::create(['name' => filter_var(str_replace(' ', '-', strtolower($request->name)),FILTER_SANITIZE_STRING)]);
         return redirect()->route('manageRoles');
     }
 
@@ -187,7 +194,7 @@ class AclController extends Controller
             'description' => 'string',
         ]);
         Permission::create([
-            'name' => filter_var($request->name,FILTER_SANITIZE_STRING),
+            'name' => filter_var(str_replace(' ', '-', strtolower($request->name)),FILTER_SANITIZE_STRING),
             'description' => filter_var($request->description,FILTER_SANITIZE_STRING)
             ]);
         return redirect()->route('managePermissions');

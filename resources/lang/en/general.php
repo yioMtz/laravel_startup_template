@@ -18,4 +18,5 @@ return [
     'return' => 'Return',
     'description' => 'Description',
     'username' => 'Username',
+    'save' => 'Save'
 ];
