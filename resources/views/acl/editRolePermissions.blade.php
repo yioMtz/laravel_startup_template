@@ -2,7 +2,20 @@
 
 @section('content')
 <div class="container">
+    <form action="{{ route('setPermissionsToRole') }}" method="post">
+        @csrf
+        <input type="hidden" name="role_id" value="{{ $role->id }}" >
 <h1>{{__('acl.manageAssignPermissions')}}</h1>
+
+<div class="row my-2">
+  <div class="col">
+          <a class="btn btn-secondary mr-2 float-left" href="{{ route('manageRoles') }}"><i class="fas fa-chevron-left"></i> {{__('general.return')}}</a>
+          <button class="btn btn-success float-right" type="submit">
+            {{ __('general.save') }}
+       </button>
+        </div>
+</div>
+
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>
@@ -18,13 +31,6 @@
         {{ session('status') }}
     </div>
 @endif
-
-
-<form action="{{ route('setPermissionsToRole') }}" method="post">
-    @csrf
-    <input type="hidden" name="role_id" value="{{ $role->id }}" >
-
-
 <div class="row">
 <div class="accordion col mt-3" id="accordionExample">
 
@@ -33,9 +39,6 @@
           <h2 class="mb-0">
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <i class="fas fa-key"></i> {{ __('acl.permissions') }}
-            </button>
-            <button class="btn btn-success float-right" type="submit">
-                 {{ __('general.save') }}
             </button>
           </h2>
         </div>
@@ -53,9 +56,6 @@
             </div>
           </div>
         </div>
-
-
-
 </div>
 </div> 
 </form>

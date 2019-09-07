@@ -2,7 +2,20 @@
 
 @section('content')
 <div class="container">
+    <form action="{{ route('update.permissions') }}" method="post" id="roleForm">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ $user->id }}" >
 <h1>{{__('acl.title')}}</h1>
+
+<div class="row my-2">
+    <div class="col">
+            <a class="btn btn-secondary mr-2 float-left" href="{{ route('admin.acl') }}"><i class="fas fa-chevron-left"></i> {{__('general.return')}}</a>
+            <button class="btn btn-success float-right" type="submit">
+              {{ __('general.save') }}
+         </button>
+          </div>
+  </div>
+
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>
@@ -18,19 +31,8 @@
         {{ session('status') }}
     </div>
 @endif
-
-
-<form action="{{ route('update.permissions') }}" method="post" id="roleForm">
-    @csrf
-    <input type="hidden" name="user_id" value="{{ $user->id }}" >
 <div class="row">
-  <div class="col">
-      <div class="row my-2">
-          <div class="col">
-                  <a class="btn btn-secondary mr-2 float-left" href="{{ route('admin.acl') }}"><i class="fas fa-chevron-left"></i> {{__('general.return')}}</a>
-          </div>
-        </div>
-        
+  <div class="col">       
         <div class="card">
           <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
@@ -42,8 +44,6 @@
                 <P>
                   {{ __('acl.assign_user_roles_text') }}
                 <p>        
-                  
-                <button type="submit" class="btn btn-success float-right">{{ __('general.save') }}</button>
             </div>
         </div>
       </div>
@@ -96,5 +96,6 @@
 </div>
 </div>
 </div> 
+</form>
 </div>
 @endsection
