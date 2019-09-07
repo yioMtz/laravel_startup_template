@@ -31,5 +31,6 @@ return [
     'roles' => 'Roles',
     'invalidRole' => 'Role is undefined.',
     'permissions_updated' => 'Roles & Permissions updated!',
+    'permissionsToRole' => 'Set permissions to role.',
 
 ];

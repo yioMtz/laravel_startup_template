@@ -5,6 +5,22 @@
   <div class="row">
     <div class="col">
     <h1>{{__('acl.list_of_roles')}}</h1>
+    @if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
     </div>
   </div>
   <div class="row">

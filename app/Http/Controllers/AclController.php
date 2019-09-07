@@ -206,11 +206,12 @@ class AclController extends Controller
      */
     public function editRolePermissions($id)
     {
+        $role = Role::findById($id);
         $permissions = \Spatie\Permission\Models\Permission::all();
         $pageVars = [
             //This is the title of my custom view.
-                'pageTitle'=> __('acl.editRoles'),
-                'role' => $id,
+                'pageTitle'=> __('acl.permissionsToRole'),
+                'role' => $role,
                 'permissions' => $permissions
             ];
         return view('acl/editRolePermissions')->with($pageVars);
@@ -231,10 +232,12 @@ class AclController extends Controller
             'permissions.*' => 'exists:permissions,name',
         ])->validate();
 
+        $role = Role::findById($request->role_id);;
+
          if(empty($validatedData['permissions'])){
-            $user->syncPermissions();
+            $role->syncPermissions();
          }else{
-            $user->syncPermissions([$validatedData['permissions']]);
+            $role->syncPermissions([$validatedData['permissions']]);
          }
          
 
