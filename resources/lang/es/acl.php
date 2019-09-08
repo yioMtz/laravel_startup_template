@@ -21,19 +21,19 @@ return [
     'permissionsBtn' => 'Administrar permisos',
     'rolename' => 'Nombre de rol',
     'permissions' => 'Permisos',
-    'manageAssignPermissions' => 'Administrar permisos de asignación',
-    'createRole' => 'Crear nueva función',
+    'manageAssignPermissions' => 'Administrar permisos del rol',
+    'createRole' => 'Crear nuevo rol de usuario',
     'newRole' => 'Crear nuevo rol',
     'createPermission' => 'Crear nuevo permiso',
     'newPermission' => 'Crear nuevo permiso',
     'permissionName' => 'Nombre del permiso',
-    'asignar_usuario_roles_texto' => 'Verifique los roles para el usuario y cualquier permiso individual adicional no cubierto por los roles asignados',
+    'assign_user_roles_text' => 'Marque los roles para el usuario y cualquier permiso individual adicional no cubierto por los roles asignados',
     'roles' => 'Roles',
     'invalidRole' => 'El rol no está definido',
     'permissions_updated' => 'Roles y permisos actualizados!',
     'permissionsToRole' => 'Establecer permisos a rol',
     'permissionByRole' => 'Permiso establecido por rol',
-    'execute_permissions_to_role_text' => 'Verifique los permisos que esta función proporcionará a los usuarios',
+    'assign_permissions_to_role_text' => 'Marque los permisos que este rol proporcionará a los usuarios',
 
 
 

@@ -18,5 +18,5 @@ return [
     'return' => 'Regresar',
     'description' => 'Descripcion',
     'username' => 'Usuario',
-    'save' => 'Guardar'
+    'save' => 'Guardar',
 ];

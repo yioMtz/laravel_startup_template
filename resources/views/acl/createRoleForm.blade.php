@@ -20,7 +20,7 @@
               <label for="roleName">{{__('acl.rolename')}}</label>
               <input type="text" class="form-control" id="name" name="name">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{ __('general.save') }}</button>
         <a class="btn btn-danger" href="{{ route('manageRoles')}}">{{__('general.cancel')}}</a>
     </form>
     </div>

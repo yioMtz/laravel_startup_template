@@ -23,7 +23,7 @@
               <label for="permissionDesc">{{__('general.description')}}</label>
               <textarea class="form-control" id="description" name="description" rows="10"> </textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{ __('general.save') }}</button>
         <a class="btn btn-danger" href="{{ route('managePermissions')}}">{{__('general.cancel')}}</a>
     </form>
     </div>
