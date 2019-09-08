@@ -33,5 +33,6 @@ return [
     'permissions_updated' => 'Roles & Permissions updated!',
     'permissionsToRole' => 'Set permissions to role.',
     'permissionByRole' => 'Permission set by Role',
+    'assign_permissions_to_role_text' => 'Check the permissions this role will provide to users',
 
 ];

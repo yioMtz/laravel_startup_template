@@ -61,7 +61,7 @@
 </div>
 
 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-<div class="card-body ">
+<div class="card-body grid-permissions">
     @if(!empty($roles))
     @foreach ($roles as $role)
       <div class="custom-control custom-checkbox">

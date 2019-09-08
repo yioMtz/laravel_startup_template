@@ -32,6 +32,20 @@
     </div>
 @endif
 <div class="row">
+    <div class="col">       
+          <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">{{  $role->name }}</h4>
+                </div>  
+                  <P>
+                    {{ __('acl.assign_permissions_to_role_text') }}
+                  <p>        
+              </div>
+          </div>
+        </div>
+  </div>
+<div class="row">
 <div class="accordion col mt-3" id="accordionExample">
 
     <div class="card">
@@ -44,7 +58,7 @@
         </div>
 
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
+            <div class="card-body grid-permissions">
                 @if(!empty($permissions))
                 @foreach ($permissions as $permission)
                   <div class="custom-control custom-checkbox">
