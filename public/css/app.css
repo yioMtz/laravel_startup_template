@@ -16502,3 +16502,15 @@ a.text-dark:focus {
   background-color: #38c172;
 }
 
+.grid-permissions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.permssion-label-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: flex-start;
+}
+

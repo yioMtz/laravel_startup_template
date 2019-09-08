@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Access;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Permission;
 
 class Permissions extends Controller
 {

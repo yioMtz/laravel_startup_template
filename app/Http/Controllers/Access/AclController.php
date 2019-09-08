@@ -24,7 +24,7 @@ class AclController extends Controller
      }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of users.
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,25 +55,18 @@ class AclController extends Controller
         $user = User::find($id);
         $roles = \Spatie\Permission\Models\Role::all();
         $permissions = \Spatie\Permission\Models\Permission::all();
-//         $rolePermissions = $user->getPermissionsViaRoles();
-//         $directPermissions = $user->permissions;
-//         echo "ROLE PERMISSIONS";
-//         foreach($rolePermissions AS $rolePermission){
-//             var_dump($rolePermission->name);
-//         }
-//         echo "DIRECT PERMISSIONS";
-//         foreach($directPermissions AS $directPermission){
-//             var_dump($directPermission->name);
-//         }
-        
-// die();
+        $rolePermissions = $user->getPermissionsViaRoles();
+        $directPermissions = $user->permissions;
+
 
         $pageVars = [
             //This is the title of my custom view.
                 'pageTitle'=> __('acl.editRoles'),
                 'user' => $user,
                 'roles' => $roles,
-                'permissions' => $permissions
+                'permissions' => $permissions,
+                'rPermissions' => $rolePermissions,
+                'dPermissions' => $directPermissions
             ];
         return view('acl/edit')->with($pageVars);
     }

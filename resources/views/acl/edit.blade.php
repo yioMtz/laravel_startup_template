@@ -82,12 +82,23 @@
 </h2>
 </div>
 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-<div class="card-body">
+<div class="card-body grid-permissions">
     @if(!empty($permissions))
     @foreach ($permissions as $permission)
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" name="permissions[{{ $permission->name }}]" value={{ $permission->name }} id="permission{{ $permission->id }}" {{ $user->hasPermissionTo($permission->name) ? 'checked' : '' }}>
-        <label class="custom-control-label" for="permission{{ $permission->id }}">{{ $permission->name }}</label>
+      <div class="custom-control custom-checkbox permssion-label-container">
+        <input 
+          type="checkbox"
+          class="custom-control-input" 
+          name="permissions[{{ $permission->name }}]" 
+          value={{ $permission->name }} 
+          id="permission{{ $permission->id }}" 
+          {{ $user->hasPermissionTo($permission->name) ? 'checked' : '' }}
+          {{ $rPermissions->contains('name',$permission->name) ? 'disabled' : '' }}
+          >
+          
+            <label class="custom-control-label"  for="permission{{ $permission->id }}">{{ $permission->name }}</label>
+            <small class="text-muted">{{ $rPermissions->contains('name',$permission->name) ? '('.__('acl.permissionByRole').')' : '' }}</small>
+          
       </div>
     @endforeach
     @endif
