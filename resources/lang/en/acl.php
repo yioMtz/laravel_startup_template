@@ -11,6 +11,7 @@ return [
     |
     */
 
+    'acl' => 'Access Control',
     'acl_title' => 'Manage users permissions and roles',
     'title' => 'User Roles & Permissions',
     'list_of_users' => 'List of users',

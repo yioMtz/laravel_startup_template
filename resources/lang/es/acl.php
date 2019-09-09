@@ -11,6 +11,7 @@ return [
     |
     */
 
+    'acl' => 'Control de acceso',
     'acl_title' => 'Administrar permisos y roles de usuarios',
     'title' => 'Roles y permisos de usuario',
     'list_of_users' => 'Lista de usuarios',

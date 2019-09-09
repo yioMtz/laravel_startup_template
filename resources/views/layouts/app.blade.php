@@ -57,7 +57,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         @if(auth()->user()->hasRole('admin'))
                                         <a class="dropdown-item" href="{{ route('admin.acl') }}">
-                                            Access Control
+                                           {{ __('acl.acl') }}
                                        </a>
                                 @endif
 
