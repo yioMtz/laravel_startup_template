@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ (isset($pageTitle) ? config('app.name', 'Laravel'). ' | '.$pageTitle : config('app.name', 'Laravel')) }}</title>
+    <title>{{ (isset($pageTitle) ? str_replace('_', ' ', config('app.name', 'Laravel')). ' | '.$pageTitle : str_replace('_', ' ', config('app.name', 'Laravel'))) }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ str_replace('_', ' ', config('app.name', 'Laravel')) }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -58,6 +58,9 @@
                                         @if(auth()->user()->hasRole('admin'))
                                         <a class="dropdown-item" href="{{ route('admin.acl') }}">
                                            {{ __('acl.acl') }}
+                                       </a>
+                                        <a class="dropdown-item" href="{{ route('admin.users') }}">
+                                          Usuarios
                                        </a>
                                 @endif
 

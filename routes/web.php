@@ -15,9 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+/*
+|--------------------------------------------------------------------------
+| Gestion de usuarios
+|--------------------------------------------------------------------------
+|
+*/
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/users','Users\UsersController@index')->name('admin.users');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +60,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('admin/store-Permission','Access\Permissions@storePermission')->name('createPermission');
     });   
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
